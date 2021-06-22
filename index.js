@@ -2,10 +2,11 @@ const express =  require("express");
 const logger =  require("morgan");
 const path =  require("path");
 const dotenv =  require("dotenv");
-
+const connectDb=  require("./server/database/connection")
 const home =  require("./server/route/homeroute");
 const app  =  express();
 
+connectDb();
 app.use(logger("dev"));
 app.use(express.urlencoded({extended:false}));
 
