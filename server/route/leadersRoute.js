@@ -4,14 +4,14 @@ const renderLeaders =  require("../controller/renderLeaders");
 const cors = require("./cors");
 const uploadImage =  require("./uploadfile");
 router.use(app.json());
-
+router.use(app.urlencoded({extended:false}));
 router.route("/")
-.get(renderLeaders.find)
+.get( cors.corsOptions, renderLeaders.find)
 
-.post( uploadImage.uploadfile, renderLeaders.create)
+.post(cors.corsOptions,  uploadImage.uploadfile, renderLeaders.create)
 
-.put(renderLeaders.update)
+.put(cors.corsOptions, renderLeaders.update)
 
-.delete(renderLeaders.delete)
+.delete(cors.corsOptions, renderLeaders.delete)
 
 module.exports =  router;

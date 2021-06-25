@@ -17,7 +17,7 @@ exports.create   =  async function(req,res){
     if(!req.body){
         res.status(500);
     }
-
+    console.log(req.body);
     try {
         if(!req.body)throw new Error("Body cannot be empty")
          const newleader =  new leader({

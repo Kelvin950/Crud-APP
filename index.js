@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended:false}));
 
 app.set("view engine" , "ejs");
 app.set("views" , path.resolve(__dirname, "views"));
-app.options('*', cors())
+app.options('*', cors());
 app.use("/css" , express.static(path.resolve(__dirname , "asserts/css")));
 app.use("/img" , express.static(path.resolve(__dirname , "asserts/img")));
 app.use("/js" , express.static(path.resolve(__dirname , "asserts/js")));

@@ -3,19 +3,18 @@ const express =  require("express");
 const app =  express();
 
 
-const whiteList =  ["http://127.0.0.1:5500" ,"http://localhost:8080"];
 
-const corsWithOption =  {
-       
-    origin: function(origin , callback){
-        if(whiteList.indexOf(origin)!==-1){
-            callback(null , true);
-        }
-        else{
-            callback(new Error(`Not allowed by cors`))
-        }
-    }
+
+const whiteList =  ["http://127.0.0.1:5500" ,"http://localhost:8080"];
+const corsOptionsDelegate = function (req, callback) {
+  let corsOptions;
+  if (whiteList.indexOf(req.header('Origin')) !== -1) {
+    corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
+  } else {
+    corsOptions = { origin: false } // disable CORS for this request
+  }
+  callback(null, corsOptions) // callback expects two parameters: error and options
 }
 
 
-exports.corsOption = cors(corsWithOption);  
+exports.corsOptions =  cors(corsOptionsDelegate);
