@@ -57,3 +57,57 @@ if(!leadersDelete)throw new Error("Could not delete");}
     }
 }
 
+
+
+exports.findId=   async function(req,res){
+try{
+ 
+    const id   =  req.params.id;
+  
+      const singleLeader  =  await leader.findById(id);
+              
+      if(!singleLeader) res.status(404).send({message:"NO leader found"});
+           res.status(200)
+           res.send(singleLeader)}
+           catch(err){
+               res.send({error:err.message})
+           }
+        
+     
+
+}
+exports.createById =  async function(req, res){
+    res.status(404);
+    res.end("operation not supported")
+}
+
+exports.updateId =  async function(req,res){
+
+    if(!req.body){
+        res.status(400).send({message:"Must include body"})
+    }
+    try{
+        const id  =  req.params.id;
+        const singleLeader= await leader.findByIdAndUpdate((id) , {$set:req.body} , {new:true});
+         if(!singleLeader)res.status(400).send({message:"failed"});
+        res.status(200);
+        res.send(singleLeader);
+
+    }catch(err){
+        res.send({error:err.message})
+    }
+}
+
+exports.deleteByid =  async function(req, res){
+    try{
+     
+     
+      
+               const data=  await leader.findByIdAndDelete({_id:req.params.id});
+               if(!data) res.status(404).send({message:"Leader not deleted maybe leader does not exist"})
+               res.status(200)
+               res.send({message:"deleted successfully"}) 
+    }catch(err){
+         res.send({err:err.message})
+    }
+}

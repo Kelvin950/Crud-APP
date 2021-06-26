@@ -14,4 +14,14 @@ router.route("/")
 
 .delete(cors.corsOptions, renderLeaders.delete)
 
+
+router.route("/:id")
+.get( cors.corsOptions, renderLeaders.findId)
+
+.post(cors.corsOptions,  uploadImage.uploadfile, renderLeaders.updateId)
+
+.put(cors.corsOptions, renderLeaders.updateId)
+
+.delete(cors.corsOptions, renderLeaders.deleteByid)
+
 module.exports =  router;
