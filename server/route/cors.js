@@ -5,7 +5,7 @@ const app =  express();
 
 
 
-const whiteList =  ["http://127.0.0.1:5500" ,"http://localhost:8080"];
+const whiteList =  ["http://127.0.0.1:5500"];
 const corsOptionsDelegate = function (req, callback) {
   let corsOptions;
   if (whiteList.indexOf(req.header('Origin')) !== -1) {
