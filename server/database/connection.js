@@ -1,5 +1,5 @@
 const mongoose =  require("mongoose");
-const url =  `mongodb+srv://Kelvin:#####.@cluster0.kfxq1.mongodb.net/NewServer?retryWrites=true&w=majority`
+const url =  "";
 const connectDb =  async function(){
 
      try{
